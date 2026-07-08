@@ -1001,3 +1001,55 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+.pip-footer-bottom {
+  background: #f7f4ed;
+  border-top: 1px solid var(--pip-border);
+}
+
+.pip-footer-bottom-text {
+  font-family: var(--font-hero-sans);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #6b6560;
+  text-align: center;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.pip-footer-bottom-line,
+.pip-footer-bottom-credit {
+  margin: 0;
+}
+
+.pip-footer-bottom-dot {
+  display: inline;
+}
+
+.pip-footer-credit-link {
+  color: #c4867a;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.pip-footer-credit-link:hover {
+  color: #a86b5f;
+  text-decoration: underline;
+}
+
+@media (max-width: 767px) {
+  .pip-footer-bottom-text {
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.8125rem;
+  }
+
+  .pip-footer-bottom-dot {
+    display: none;
+  }
+}

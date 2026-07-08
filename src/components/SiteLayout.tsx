@@ -198,10 +198,27 @@ function SiteFooter({ onContactClick }: { onContactClick: () => void }) {
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="container-pro py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-white/50">
-          <span>© {new Date().getFullYear()} GK Agro Farms. All rights reserved.</span>
-          <span>Clean growth. Trusted agriculture.</span>
+      <div className="pip-footer-bottom">
+        <div className="container-pro py-4 flex justify-center">
+          <div className="pip-footer-bottom-text">
+            <p className="pip-footer-bottom-line">
+              © {new Date().getFullYear()} GK Agro Farms. All rights reserved.
+            </p>
+            <p className="pip-footer-bottom-credit">
+              <span className="pip-footer-bottom-dot" aria-hidden="true">
+                ·{" "}
+              </span>
+              Designed By{" "}
+              <a
+                href="https://blazeagency.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pip-footer-credit-link"
+              >
+                Blaze The Entity
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </motion.footer>
