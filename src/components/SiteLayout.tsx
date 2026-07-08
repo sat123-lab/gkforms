@@ -48,33 +48,33 @@ export function SiteLayout() {
         </div>
 
         {/* White header */}
-        <header className="bg-white border-b border-[var(--pip-border)] shadow-sm">
+        <header className="bg-white border-b border-[var(--pip-border)] shadow-sm overflow-x-clip">
           <div className="container-pro">
-            <div className="flex items-center justify-between h-[64px] sm:h-[68px] gap-3">
-              <Link to="/" className="-ml-4 sm:-ml-6 md:-ml-10 lg:-ml-12 shrink-0">
+            <div className="flex items-center justify-between h-[64px] sm:h-[68px] gap-2 lg:gap-4">
+              <Link to="/" className="shrink-0">
                 <Logo size="md" />
               </Link>
 
-              <nav className="hidden xl:flex items-center gap-0.5">
+              <nav className="hidden lg:flex items-center justify-center gap-0.5 flex-1 min-w-0 px-2">
                 {navItems.map((item) => (
                   <Link
                     key={item.to}
                     to={item.to}
-                    className="pip-nav-link"
-                    activeProps={{ className: "pip-nav-link pip-nav-link-active" }}
+                    className="pip-nav-link lg:px-2 xl:px-3"
+                    activeProps={{ className: "pip-nav-link pip-nav-link-active lg:px-2 xl:px-3" }}
                   >
                     {item.label}
                   </Link>
                 ))}
               </nav>
 
-              <div className="hidden md:flex items-center gap-1">
+              <div className="hidden lg:flex items-center gap-1 shrink-0">
                 <button type="button" onClick={openContact} className="pip-cta-header">
                   Contact us
                 </button>
               </div>
 
-              <div className="flex items-center gap-1 md:hidden">
+              <div className="flex lg:hidden items-center shrink-0">
                 <button
                   className="p-2 text-[var(--pip-text)]"
                   onClick={() => setOpen((v) => !v)}
@@ -89,7 +89,7 @@ export function SiteLayout() {
           <ContactModal />
 
           {open && (
-            <div className="xl:hidden border-t border-[var(--pip-border)] bg-white px-4 py-3 flex flex-col gap-1">
+            <div className="lg:hidden border-t border-[var(--pip-border)] bg-white px-4 py-3 flex flex-col gap-1">
               {navItems.map((item) => (
                 <Link
                   key={item.to}

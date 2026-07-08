@@ -1,10 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
-import { heroFarm } from "@/lib/assets";
 import { crops } from "@/lib/crops";
 import { products } from "@/lib/products";
 import { ProductCarousel } from "@/components/PipProductCard";
+import { HeroSection } from "@/components/HeroSection";
+import { HeroPortfolioRail } from "@/components/HeroPortfolioRail";
 import { processSteps } from "@/lib/processSteps";
 import { useContactModal } from "@/contexts/ContactModalContext";
 
@@ -44,97 +45,12 @@ const fadeUp = {
 };
 
 function Home() {
-  const heroCrops = crops.slice(0, 4);
   const { openContact } = useContactModal();
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative min-h-[520px] md:min-h-[600px] lg:min-h-[680px] overflow-hidden bg-[var(--pip-green-dark)]">
-        <motion.img
-          src={heroFarm}
-          alt="Premium aerial view of GK Agro Farms 74-acre medicinal estate"
-          className="absolute inset-0 w-full h-full object-cover"
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 8, ease: "easeOut" }}
-          width={1920}
-          height={1200}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0d2818]/90 via-[#1a3d2a]/75 to-[#1a3d2a]/40" />
-
-        <div className="relative container-pro h-full flex items-center pt-14 pb-20 md:pt-16 md:pb-24">
-          <div className="grid lg:grid-cols-2 gap-10 lg:gap-6 items-start lg:items-center w-full">
-            <div className="z-10">
-              <motion.p
-                custom={0}
-                variants={fadeUp}
-                initial="hidden"
-                animate="visible"
-                className="text-white/60 text-xs uppercase tracking-[0.35em] mb-4 font-medium"
-              >
-                74-acre integrated herbal estate
-              </motion.p>
-              <motion.h1
-                custom={1}
-                variants={fadeUp}
-                initial="hidden"
-                animate="visible"
-                className="pip-hero-line1"
-              >
-                NATURE OUTSIDE
-              </motion.h1>
-              <motion.p
-                custom={2}
-                variants={fadeUp}
-                initial="hidden"
-                animate="visible"
-                className="pip-hero-script"
-              >
-                Medicine Grows Inside
-              </motion.p>
-              <motion.p
-                custom={3}
-                variants={fadeUp}
-                initial="hidden"
-                animate="visible"
-                className="mt-3 max-w-md text-white/75 text-sm md:text-base leading-relaxed"
-              >
-                Premium medicinal crops, in-house processing, and export-ready nutraceuticals — cultivated across 74 acres in Andhra Pradesh.
-              </motion.p>
-              <motion.div custom={4} variants={fadeUp} initial="hidden" animate="visible">
-                <Link to="/farm" className="pip-hero-cta mt-4 inline-flex">
-                  EXPLORE THE FARM
-                </Link>
-              </motion.div>
-            </div>
-
-            <div className="relative hidden md:flex items-end justify-center gap-3 lg:gap-4 min-h-[320px]">
-              {heroCrops.map((crop, i) => (
-                <motion.div
-                  key={crop.slug}
-                  initial={{ opacity: 0, y: 60, rotate: [-4, 2, -2, 3][i] }}
-                  animate={{
-                    opacity: 1,
-                    y: [24, 0, 12, 6][i],
-                    rotate: [-4, 2, -2, 3][i],
-                  }}
-                  transition={{ duration: 0.7, delay: 0.3 + i * 0.12, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ y: [14, -10, 2, -4][i], scale: 1.04 }}
-                  className="pip-hero-product"
-                  style={{ zIndex: [2, 4, 3, 1][i] }}
-                >
-                  <img src={crop.image} alt={crop.name} className="w-full h-full object-cover" />
-                  <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/70 to-transparent p-3">
-                    <p className="text-white text-[10px] uppercase tracking-wider font-bold">{crop.name}</p>
-                    <p className="text-white/70 text-[9px]">{crop.area}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSection stats={stats} />
+      <HeroPortfolioRail crops={crops.slice(0, 4)} />
 
       {/* Trust strip */}
       <motion.section
