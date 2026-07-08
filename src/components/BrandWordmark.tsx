@@ -35,38 +35,14 @@ const scales = {
 export function BrandWordmark({ size = "md", variant = "dark" }: BrandWordmarkProps) {
   const s = scales[size];
   const titleColor = variant === "light" ? "text-white" : "text-[#003300]";
-  const bottomColor = variant === "light" ? "text-white/90" : "text-[#003300]";
-  const gold = variant === "light" ? "#E8C547" : "#B8860B";
-  const leafColor = variant === "light" ? "#7CB87A" : "#2D6A3F";
 
   return (
-    <div className={`flex flex-col items-center text-center select-none ${s.rowGap}`}>
+    <div className="select-none">
       <p
         className={`font-brand-serif font-bold uppercase ${s.title} ${titleColor}`}
         style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
       >
-        GK AGRO FARMS
-      </p>
-
-      <div className={`flex items-center w-full max-w-full ${s.gap}`}>
-        <span className="h-px flex-1 min-w-[12px]" style={{ backgroundColor: gold }} />
-        <span
-          className={`font-sans font-medium uppercase whitespace-nowrap ${s.tag}`}
-          style={{ color: gold }}
-        >
-          CULTIVATE • PROCESS • WELLNESS
-        </span>
-        <span className="h-px flex-1 min-w-[12px]" style={{ backgroundColor: gold }} />
-      </div>
-
-      <div className={`flex items-center w-[72%] sm:w-[68%] ${s.gap}`}>
-        <span className="h-px flex-1" style={{ backgroundColor: gold }} />
-        <Leaf className={s.leaf} style={{ color: leafColor }} strokeWidth={2} fill={leafColor} />
-        <span className="h-px flex-1" style={{ backgroundColor: gold }} />
-      </div>
-
-      <p className={`font-sans font-medium uppercase ${s.bottom} ${bottomColor}`}>
-        FROM NATURE TO NUTRITION
+        GK Agro Farms
       </p>
     </div>
   );

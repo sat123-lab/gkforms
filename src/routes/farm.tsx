@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Reveal } from "@/components/Reveal";
 import { PageBanner } from "@/components/PageBanner";
-import farmMap from "@/assets/farm-map.jpg";
+import farmMap from "@/assets/ChatGPT Image Jul 8, 2026, 02_41_33 PM.png";
 
 export const Route = createFileRoute("/farm")({
   head: () => ({
