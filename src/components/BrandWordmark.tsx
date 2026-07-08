@@ -1,5 +1,3 @@
-import { Leaf } from "lucide-react";
-
 type BrandWordmarkProps = {
   size?: "sm" | "md" | "lg";
   variant?: "dark" | "light";
@@ -38,10 +36,7 @@ export function BrandWordmark({ size = "md", variant = "dark" }: BrandWordmarkPr
 
   return (
     <div className="select-none">
-      <p
-        className={`font-brand-serif font-bold uppercase ${s.title} ${titleColor}`}
-        style={{ fontFamily: '"Playfair Display", Georgia, serif' }}
-      >
+      <p className={`font-bold uppercase ${s.title} ${titleColor}`}>
         GK Agro Farms
       </p>
     </div>

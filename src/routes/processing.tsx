@@ -30,7 +30,7 @@ function ProcessingPage() {
 
       <section className="container-pro max-w-4xl py-14 md:py-20">
         <div className="relative">
-          <svg className="absolute left-9 top-0 h-full w-2 hidden md:block" viewBox="0 0 4 100" preserveAspectRatio="none" aria-hidden>
+          <svg className="absolute left-9 top-0 h-full w-2 hidden md:block z-0 pointer-events-none" viewBox="0 0 4 100" preserveAspectRatio="none" aria-hidden>
             <motion.line
               x1="2" y1="0" x2="2" y2="100"
               stroke="var(--pip-green)"
@@ -43,7 +43,7 @@ function ProcessingPage() {
             />
           </svg>
 
-          <div className="space-y-6">
+          <div className="relative z-10 space-y-6">
             {processSteps.map((s, i) => {
               const Icon = s.icon;
               return (
@@ -54,11 +54,11 @@ function ProcessingPage() {
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   whileHover={{ x: 6 }}
-                  className="flex gap-6 items-start"
+                  className="relative z-10 flex gap-6 items-start"
                 >
                   <motion.div
                     whileHover={{ scale: 1.08, rotate: 5 }}
-                    className="shrink-0 w-20 h-20 rounded-2xl bg-[var(--pip-green)] flex items-center justify-center shadow-lg"
+                    className="relative z-10 shrink-0 w-20 h-20 rounded-2xl bg-[var(--pip-green)] flex items-center justify-center shadow-lg"
                   >
                     <Icon className="w-8 h-8 text-white" strokeWidth={1.5} />
                   </motion.div>

@@ -39,7 +39,7 @@
 
   --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  --font-script: "Pacifico", cursive;
+  --font-script: "Montserrat", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
@@ -252,8 +252,8 @@
 
 /* ── Pipagro-style components ── */
 @utility font-script {
-  font-family: var(--font-script);
-  font-weight: 400;
+  font-family: var(--font-sans);
+  font-weight: 700;
 }
 
 @utility pip-announcement {
@@ -341,11 +341,13 @@
 }
 
 @utility pip-hero-script {
-  font-family: var(--font-script);
+  font-family: var(--font-sans);
   font-size: clamp(2.5rem, 7vw, 5rem);
+  font-weight: 800;
   color: var(--pip-yellow);
   line-height: 1.1;
   margin-top: 0.25rem;
+  letter-spacing: -0.01em;
 }
 
 @utility pip-hero-cta {

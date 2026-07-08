@@ -176,24 +176,6 @@ function Home() {
       </section>
 
       <ProductCarousel
-        title="Our Cultivation Portfolio"
-        subtitle="Twelve crops · One estate"
-        viewAllTo="/crops"
-        showRequestSpecs={false}
-        items={crops.slice(0, 8).map((c, i) => ({
-          product: {
-            name: c.name,
-            price: c.yield,
-            tag: c.cycle,
-            description: c.use,
-            image: c.image,
-            rating: `4.9 | ${c.area}`,
-          },
-          badge: i === 0 ? "Featured" : i === 2 ? "Trending" : undefined,
-        }))}
-      />
-
-      <ProductCarousel
         title="Export-Ready Products"
         subtitle="Standardized · Traceable"
         viewAllTo="/products"

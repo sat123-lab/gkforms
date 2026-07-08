@@ -35,86 +35,78 @@ export function SiteLayout() {
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      {/* Announcement bar — pipagro style */}
-      <div className="pip-announcement">
-        <div className="pip-announcement-track">
-          {[...announcements, ...announcements].map((msg, i) => (
-            <span key={i} className="pip-announcement-item">
-              {msg}
-            </span>
-          ))}
+      <div className="sticky top-0 z-50">
+        {/* Announcement bar — pipagro style */}
+        <div className="pip-announcement">
+          <div className="pip-announcement-track">
+            {[...announcements, ...announcements].map((msg, i) => (
+              <span key={i} className="pip-announcement-item">
+                {msg}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* White header */}
-      <header className="sticky top-0 z-50 bg-white border-b border-[var(--pip-border)] shadow-sm">
-        <div className="container-pro">
-          <div className="flex items-center justify-between h-[64px] sm:h-[68px] gap-3">
-            <Link to="/" className="-ml-4 sm:-ml-6 md:-ml-10 lg:-ml-12 shrink-0">
-              <Logo size="md" />
-            </Link>
+        {/* White header */}
+        <header className="bg-white border-b border-[var(--pip-border)] shadow-sm">
+          <div className="container-pro">
+            <div className="flex items-center justify-between h-[64px] sm:h-[68px] gap-3">
+              <Link to="/" className="-ml-4 sm:-ml-6 md:-ml-10 lg:-ml-12 shrink-0">
+                <Logo size="md" />
+              </Link>
 
-            <nav className="hidden xl:flex items-center gap-0.5">
+              <nav className="hidden xl:flex items-center gap-0.5">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.to}
+                    to={item.to}
+                    className="pip-nav-link"
+                    activeProps={{ className: "pip-nav-link pip-nav-link-active" }}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </nav>
+
+              <div className="hidden md:flex items-center gap-1">
+                <button type="button" onClick={openContact} className="pip-cta-header">
+                  Contact us
+                </button>
+              </div>
+
+              <div className="flex items-center gap-1 md:hidden">
+                <button
+                  className="p-2 text-[var(--pip-text)]"
+                  onClick={() => setOpen((v) => !v)}
+                  aria-label="Toggle menu"
+                >
+                  {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <ContactModal />
+
+          {open && (
+            <div className="xl:hidden border-t border-[var(--pip-border)] bg-white px-4 py-3 flex flex-col gap-1">
               {navItems.map((item) => (
                 <Link
                   key={item.to}
                   to={item.to}
-                  className="pip-nav-link"
-                  activeProps={{ className: "pip-nav-link pip-nav-link-active" }}
+                  className="px-4 py-3 rounded-lg text-base font-semibold text-[var(--pip-text)] hover:bg-[var(--pip-cream)]"
+                  activeProps={{ className: "bg-[var(--pip-cream)] text-[var(--pip-green)]" }}
                 >
                   {item.label}
                 </Link>
               ))}
-              <button type="button" onClick={openContact} className="pip-nav-link">
-                Contact
-              </button>
-            </nav>
-
-            <div className="hidden md:flex items-center gap-1">
-              <button type="button" onClick={openContact} className="pip-cta-header">
+              <button type="button" onClick={handleContactClick} className="mt-2 pip-cta-header justify-center">
                 Contact us
               </button>
             </div>
-
-            <div className="flex items-center gap-1 md:hidden">
-              <button
-                className="p-2 text-[var(--pip-text)]"
-                onClick={() => setOpen((v) => !v)}
-                aria-label="Toggle menu"
-              >
-                {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <ContactModal />
-
-        {open && (
-          <div className="xl:hidden border-t border-[var(--pip-border)] bg-white px-4 py-3 flex flex-col gap-1">
-            {navItems.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                className="px-4 py-3 rounded-lg text-base font-semibold text-[var(--pip-text)] hover:bg-[var(--pip-cream)]"
-                activeProps={{ className: "bg-[var(--pip-cream)] text-[var(--pip-green)]" }}
-              >
-                {item.label}
-              </Link>
-            ))}
-            <button
-              type="button"
-              onClick={handleContactClick}
-              className="px-4 py-3 rounded-lg text-base font-semibold text-[var(--pip-text)] hover:bg-[var(--pip-cream)] text-left"
-            >
-              Contact
-            </button>
-            <button type="button" onClick={handleContactClick} className="mt-2 pip-cta-header justify-center">
-              Contact us
-            </button>
-          </div>
-        )}
-      </header>
+          )}
+        </header>
+      </div>
 
       <main className="flex-1 relative z-10">
         <Outlet />

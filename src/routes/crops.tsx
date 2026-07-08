@@ -1,10 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { PageBanner } from "@/components/PageBanner";
 import { crops, cropTableRows, site2Rows } from "@/lib/crops";
 import { heroFarm } from "@/lib/assets";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 export const Route = createFileRoute("/crops")({
   head: () => ({
@@ -30,18 +38,40 @@ function CropsPage() {
       />
 
       <div className="container-pro py-14 md:py-20">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {crops.map((c, i) => (
-            <motion.div
-              key={c.slug}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ delay: (i % 6) * 0.08 }}
-            >
-              <FlipCard crop={c} />
-            </motion.div>
-          ))}
+        <Carousel
+          opts={{
+            align: "start",
+            loop: true,
+            dragFree: false,
+            skipSnaps: false,
+          }}
+          className="w-full"
+        >
+          <CarouselContent className="-ml-4">
+            {crops.map((c, i) => (
+              <CarouselItem
+                key={c.slug}
+                className="pl-4 basis-[85%] sm:basis-1/2 lg:basis-1/3"
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ delay: (i % 6) * 0.06, duration: 0.45 }}
+                >
+                  <FlipCard crop={c} />
+                </motion.div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden sm:flex -left-3 md:-left-5 h-11 w-11 border-[var(--pip-border)] bg-white text-[var(--pip-green)] shadow-md hover:bg-[var(--pip-cream)] hover:text-[var(--pip-green)]" />
+          <CarouselNext className="hidden sm:flex -right-3 md:-right-5 h-11 w-11 border-[var(--pip-border)] bg-white text-[var(--pip-green)] shadow-md hover:bg-[var(--pip-cream)] hover:text-[var(--pip-green)]" />
+        </Carousel>
+
+        <div className="mt-4 flex sm:hidden items-center justify-center gap-2 text-xs text-[var(--pip-muted)]">
+          <ChevronLeft className="w-4 h-4" />
+          Swipe to explore crops
+          <ChevronRight className="w-4 h-4" />
         </div>
 
         <Reveal className="mt-20 mb-6">

@@ -1,8 +1,9 @@
 import ashwagandha from "@/assets/crop-ashwagandha.jpg";
 import tulsi from "@/assets/crop-tulsi.jpg";
 import aloe from "@/assets/crop-aloe.jpg";
-import turmeric from "@/assets/crop-turmeric.jpg";
-import sugarcane from "@/assets/crop-sugarcane.jpg";
+import turmeric from "@/assets/crop/Turmeric & Red Chilli.png";
+import sugarcanePaddy from "@/assets/crop/Sugarcane & Paddy.png";
+import subabul from "@/assets/crop/Subabul.png";
 
 export type Crop = {
   slug: string;
@@ -69,7 +70,7 @@ export const crops: Crop[] = [
     cycle: "Annual / Bi-Annual",
     yield: "40 MT & 2800 kg / acre",
     use: "Sugar, alcohol, rice, bran oil",
-    image: sugarcane,
+    image: sugarcanePaddy,
     benefits: ["Staple food", "Biofuel", "By-products"],
   },
   {
@@ -80,7 +81,7 @@ export const crops: Crop[] = [
     cycle: "3-year cycle",
     yield: "20 MT / acre",
     use: "Paper, plywood, cellulose industry",
-    image: sugarcane,
+    image: subabul,
     benefits: ["Fast-growing", "Nitrogen fixing", "Timber"],
   },
 ];
