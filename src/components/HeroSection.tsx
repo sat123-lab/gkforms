@@ -31,17 +31,19 @@ export function HeroSection({ stats }: HeroSectionProps) {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="gk-hero-inner max-w-3xl"
           >
-            <p className="gk-hero-eyebrow">74-acre integrated herbal estate</p>
+            <div className="gk-hero-intro">
+              <p className="gk-hero-eyebrow">74-acre integrated herbal estate</p>
 
-            <h1 className="gk-hero-title">
-              <span className="block">Nature outside,</span>
-              <span className="block gk-hero-title-accent">medicine grows inside.</span>
-            </h1>
+              <h1 className="gk-hero-title">
+                <span className="block">Nature outside,</span>
+                <span className="block gk-hero-title-accent">medicine grows inside.</span>
+              </h1>
 
-            <p className="gk-hero-desc max-w-2xl">
-              Premium medicinal crops, in-house processing, and export-ready nutraceuticals —
-              cultivated with precision across Andhra Pradesh.
-            </p>
+              <p className="gk-hero-desc max-w-2xl">
+                Premium medicinal crops, in-house processing, and export-ready nutraceuticals —
+                cultivated with precision across Andhra Pradesh.
+              </p>
+            </div>
 
             <div className="gk-hero-actions flex flex-wrap items-center gap-3 sm:gap-4">
               <Link to="/farm" className="gk-hero-btn-primary group">
@@ -53,9 +55,9 @@ export function HeroSection({ stats }: HeroSectionProps) {
               </Link>
             </div>
 
-            <div className="gk-hero-stats flex flex-wrap gap-6 sm:gap-8 md:gap-12">
+            <div className="gk-hero-stats">
               {stats.slice(0, 3).map((s) => (
-                <div key={s.label}>
+                <div key={s.label} className="gk-hero-stat-item">
                   <p className="gk-hero-stat-value">{s.value}</p>
                   <p className="gk-hero-stat-label">{s.label}</p>
                 </div>

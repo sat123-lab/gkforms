@@ -41,30 +41,32 @@ function ProcessingPage() {
                   viewport={{ once: true, margin: "-60px" }}
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   whileHover={{ x: 6 }}
-                  className="relative z-10 flex gap-6 items-start"
+                  className="relative z-10 flex gap-6 items-stretch"
                 >
-                  {i < processSteps.length - 1 && (
+                  <div className="relative w-20 shrink-0">
                     <motion.div
-                      className="absolute left-9 top-20 hidden w-0.5 -translate-x-1/2 md:block z-0 pointer-events-none"
-                      style={{
-                        height: "calc(100% - 5rem + 1.5rem)",
-                        transformOrigin: "top",
-                        backgroundImage:
-                          "repeating-linear-gradient(to bottom, var(--pip-green) 0, var(--pip-green) 4px, transparent 4px, transparent 8px)",
-                      }}
-                      initial={{ scaleY: 0 }}
-                      whileInView={{ scaleY: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.6, delay: i * 0.1, ease: "easeInOut" }}
-                      aria-hidden
-                    />
-                  )}
-                  <motion.div
-                    whileHover={{ scale: 1.08, rotate: 5 }}
-                    className="relative z-10 shrink-0 w-20 h-20 rounded-2xl bg-[var(--pip-green)] flex items-center justify-center shadow-lg"
-                  >
-                    <Icon className="w-8 h-8 text-white" strokeWidth={1.5} />
-                  </motion.div>
+                      whileHover={{ scale: 1.08, rotate: 5 }}
+                      className="relative z-10 w-20 h-20 rounded-2xl bg-[var(--pip-green)] flex items-center justify-center shadow-lg"
+                    >
+                      <Icon className="w-8 h-8 text-white" strokeWidth={1.5} />
+                    </motion.div>
+                    {i < processSteps.length - 1 && (
+                      <motion.div
+                        className="absolute left-1/2 top-20 hidden w-0.5 -translate-x-1/2 md:block z-0 pointer-events-none"
+                        style={{
+                          height: "calc(100% - 5rem + 1.5rem)",
+                          transformOrigin: "top",
+                          backgroundImage:
+                            "repeating-linear-gradient(to bottom, var(--pip-green) 0, var(--pip-green) 4px, transparent 4px, transparent 8px)",
+                        }}
+                        initial={{ scaleY: 0 }}
+                        whileInView={{ scaleY: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: i * 0.1, ease: "easeInOut" }}
+                        aria-hidden
+                      />
+                    )}
+                  </div>
                   <div className="pip-stat-card flex-1 p-6">
                     <p className="pip-section-sub text-[10px]">Step {i + 1}</p>
                     <h3 className="text-xl font-bold mt-1 text-[var(--pip-text)]">{s.title}</h3>
