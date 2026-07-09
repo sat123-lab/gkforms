@@ -17,6 +17,7 @@ const pages: SearchItem[] = [
   { id: "page-processing", title: "Processing", to: "/processing", group: "Pages", keywords: "processing extraction" },
   { id: "page-products", title: "Products", to: "/products", group: "Pages", keywords: "products export nutraceutical" },
   { id: "page-gallery", title: "Gallery", to: "/gallery", group: "Pages", keywords: "gallery photos images" },
+  { id: "page-blogs", title: "Blog", to: "/blogs", group: "Pages", keywords: "blog articles insights news" },
   { id: "page-contact", title: "Contact", to: "/contact", group: "Pages", keywords: "contact phone email whatsapp hyderabad" },
 ];
 

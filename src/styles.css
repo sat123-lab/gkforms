@@ -548,7 +548,7 @@
 .gk-hero-title-accent {
   font-style: italic;
   font-weight: 400;
-  color: #f0dfa0;
+  color: var(--pip-yellow);
 }
 
 .gk-hero-btn-primary {
@@ -983,6 +983,33 @@
   border-radius: 0.75rem;
   padding: 1.5rem;
   border: 1px solid var(--pip-border);
+}
+
+.pip-blog-card {
+  background: white;
+  border-radius: 0.875rem;
+  overflow: hidden;
+  border: 1px solid var(--pip-border);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.25s ease;
+}
+
+.pip-blog-card:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.pip-blog-category {
+  position: absolute;
+  top: 0.875rem;
+  left: 0.875rem;
+  padding: 0.3rem 0.625rem;
+  border-radius: 9999px;
+  background: var(--pip-green);
+  color: white;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .scrollbar-hide {

@@ -23,6 +23,7 @@ const navItems = [
   { to: "/crops", label: "Crops" },
   { to: "/processing", label: "Processing" },
   { to: "/farm", label: "Farm" },
+  { to: "/blogs", label: "Blog" },
 ] as const;
 
 export function SiteLayout() {
