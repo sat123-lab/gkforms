@@ -20,30 +20,6 @@ const stats = [
   { value: "120+", label: "Jobs generated" },
 ];
 
-const testimonials = [
-  {
-    name: "Investment Partner, Hyderabad",
-    text: "GK Agro Farms presents a rare opportunity — 74 acres of traceable medicinal cultivation with in-house processing. The estate is investor-ready and operationally sound.",
-  },
-  {
-    name: "Nutraceutical Buyer",
-    text: "The standardized extracts and powders from this estate meet export-grade specifications. Traceability from soil to shelf is exactly what our industry demands.",
-  },
-  {
-    name: "Agricultural Consultant",
-    text: "Twelve crops meticulously planned across two sites — this is precision agriculture blended with Ayurvedic wisdom. A model estate for the nutraceutical era.",
-  },
-];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay: i * 0.1 },
-  }),
-};
-
 function Home() {
   const { openContact } = useContactModal();
 
@@ -150,44 +126,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="container-pro">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-10"
-          >
-            <p className="pip-section-sub">What partners say</p>
-            <h2 className="pip-section-title">
-              Trusted by <span className="font-script text-[var(--pip-yellow-dark)]">industry leaders</span>
-            </h2>
-          </motion.div>
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t, i) => (
-              <motion.blockquote
-                key={t.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                whileHover={{ y: -4 }}
-                className="pip-testimonial"
-              >
-                <div className="flex gap-0.5 mb-3">
-                  {Array.from({ length: 5 }).map((_, j) => (
-                    <Star key={j} className="w-4 h-4 fill-[var(--pip-yellow)] text-[var(--pip-yellow)]" />
-                  ))}
-                </div>
-                <p className="text-sm text-[var(--pip-muted)] leading-relaxed">{t.text}</p>
-                <footer className="mt-4 font-bold text-sm text-[var(--pip-text)]">{t.name}</footer>
-              </motion.blockquote>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
       <section className="py-14 bg-[var(--pip-green)] relative overflow-hidden">
         <motion.div
@@ -206,11 +144,11 @@ function Home() {
             Investment, partnership, offtake agreements — let's talk about how you can be part of
             India's next-generation herbal estate.
           </p>
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-4">
             <button type="button" onClick={openContact} className="pip-hero-cta">
-              BOOK A FARM VISIT
+              Book a farm visit
             </button>
-            <Link to="/about" className="pip-btn-outline-white">
+            <Link to="/about" className="pip-hero-cta">
               Read our story
             </Link>
           </div>

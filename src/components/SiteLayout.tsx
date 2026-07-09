@@ -1,10 +1,21 @@
-import { Link, Outlet, useRouterState } from "@tanstack/react-router";
+import { Link, Outlet, useNavigate, useRouterState } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { ContactModal } from "@/components/ContactModal";
+import { FloatingActions } from "@/components/FloatingActions";
+import { FooterMapLink } from "@/components/FooterMapLink";
 import { useContactModal } from "@/contexts/ContactModalContext";
+import { scrollToTop } from "@/lib/scroll";
+import {
+  CONTACT_ADDRESS,
+  CONTACT_ADDRESS_SHORT,
+  CONTACT_EMAIL,
+  CONTACT_MAPS_URL,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_TEL,
+} from "@/lib/contact";
 
 const navItems = [
   { to: "/", label: "Home" },
@@ -14,16 +25,10 @@ const navItems = [
   { to: "/farm", label: "Farm" },
 ] as const;
 
-const announcements = [
-  "74-Acre Integrated Herbal Estate",
-  "12+ Medicinal Crops · Export Ready",
-  "Nutraceutical Grade · Investor Ready",
-  "Book a Farm Visit · Partnerships Welcome",
-];
-
 export function SiteLayout() {
   const [open, setOpen] = useState(false);
   const { openContact } = useContactModal();
+  const navigate = useNavigate();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   useEffect(() => setOpen(false), [pathname]);
@@ -33,25 +38,23 @@ export function SiteLayout() {
     openContact();
   };
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (pathname === "/") {
+      scrollToTop();
+      return;
+    }
+    navigate({ to: "/" }).then(() => scrollToTop());
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-white">
       <div className="sticky top-0 z-50">
-        {/* Announcement bar — pipagro style */}
-        <div className="pip-announcement">
-          <div className="pip-announcement-track">
-            {[...announcements, ...announcements].map((msg, i) => (
-              <span key={i} className="pip-announcement-item">
-                {msg}
-              </span>
-            ))}
-          </div>
-        </div>
-
         {/* White header */}
         <header className="bg-white border-b border-[var(--pip-border)] shadow-sm overflow-x-clip">
           <div className="container-pro">
             <div className="flex items-center justify-between h-[64px] sm:h-[68px] gap-2 lg:gap-4">
-              <Link to="/" className="shrink-0">
+              <Link to="/" className="shrink-0" onClick={handleLogoClick}>
                 <Logo size="md" />
               </Link>
 
@@ -113,6 +116,7 @@ export function SiteLayout() {
       </main>
 
       <SiteFooter onContactClick={openContact} />
+      <FloatingActions />
     </div>
   );
 }
@@ -127,7 +131,7 @@ function SiteFooter({ onContactClick }: { onContactClick: () => void }) {
       className="bg-[var(--pip-green-dark)] text-white"
     >
       <div className="container-pro py-12 md:py-16">
-        <div className="grid gap-10 md:grid-cols-2 items-start">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_auto] items-start">
           <motion.div
             initial={{ opacity: 0, x: -18 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -147,7 +151,14 @@ function SiteFooter({ onContactClick }: { onContactClick: () => void }) {
             <p className="mt-4 text-sm text-white/70 leading-relaxed max-w-md">
               A concise footer with clean navigation and contact access for GK Agro Farms.
             </p>
-            <p className="mt-3 text-xs text-white/50">74-acre estate, Andhra Pradesh, India</p>
+            <a
+              href={CONTACT_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-block text-xs text-white/50 hover:text-[var(--pip-yellow)] transition-colors leading-relaxed max-w-md"
+            >
+              {CONTACT_ADDRESS_SHORT}
+            </a>
           </motion.div>
 
           <motion.div
@@ -181,19 +192,39 @@ function SiteFooter({ onContactClick }: { onContactClick: () => void }) {
 
             <div>
               <h4 className="font-bold text-sm uppercase tracking-wider mb-4">Contact</h4>
-              <ul className="space-y-2 text-sm text-white/70">
+              <ul className="space-y-3 text-sm text-white/70">
                 <li>
-                  <a href="mailto:hello@gkagrofarms.com" className="hover:text-[var(--pip-yellow)]">
-                    hello@gkagrofarms.com
+                  <a
+                    href={CONTACT_MAPS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-[var(--pip-yellow)] leading-relaxed block"
+                  >
+                    {CONTACT_ADDRESS}
                   </a>
                 </li>
                 <li>
-                  <a href="tel:+919876543210" className="hover:text-[var(--pip-yellow)]">
-                    +91 98765 43210
+                  <a href={`mailto:${CONTACT_EMAIL}`} className="hover:text-[var(--pip-yellow)]">
+                    {CONTACT_EMAIL}
+                  </a>
+                </li>
+                <li>
+                  <a href={`tel:${CONTACT_PHONE_TEL}`} className="hover:text-[var(--pip-yellow)]">
+                    {CONTACT_PHONE_DISPLAY}
                   </a>
                 </li>
               </ul>
             </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:justify-self-end w-full max-w-[280px]"
+          >
+            <FooterMapLink />
           </motion.div>
         </div>
       </div>

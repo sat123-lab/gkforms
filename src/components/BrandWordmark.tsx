@@ -36,7 +36,7 @@ export function BrandWordmark({ size = "md", variant = "dark" }: BrandWordmarkPr
 
   return (
     <div className="select-none">
-      <p className={`font-bold uppercase ${s.title} ${titleColor}`}>
+      <p className={`font-display font-semibold uppercase ${s.title} ${titleColor}`}>
         GK Agro Farms
       </p>
     </div>

@@ -1,6 +1,18 @@
 import type { CartItem } from "@/contexts/CartContext";
+import { CONTACT_PHONE_WHATSAPP } from "@/lib/contact";
 
-export const WHATSAPP_PHONE = "919876543210";
+export const WHATSAPP_PHONE = CONTACT_PHONE_WHATSAPP;
+
+export const DEFAULT_WHATSAPP_MESSAGE =
+  "Hello GK Agro Farms, I would like to get in touch. Please share more details.";
+
+export function buildWhatsAppUrl(message: string = DEFAULT_WHATSAPP_MESSAGE): string {
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+}
+
+export function openWhatsAppChat(message?: string) {
+  window.open(buildWhatsAppUrl(message), "_blank", "noopener,noreferrer");
+}
 
 export function buildWhatsAppOrderMessage(items: CartItem[]): string {
   if (items.length === 0) {
@@ -25,8 +37,7 @@ export function buildWhatsAppOrderMessage(items: CartItem[]): string {
 }
 
 export function buildWhatsAppOrderUrl(items: CartItem[]): string {
-  const text = encodeURIComponent(buildWhatsAppOrderMessage(items));
-  return `https://wa.me/${WHATSAPP_PHONE}?text=${text}`;
+  return buildWhatsAppUrl(buildWhatsAppOrderMessage(items));
 }
 
 export function openWhatsAppOrder(items: CartItem[]) {

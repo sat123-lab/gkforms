@@ -30,19 +30,6 @@ function ProcessingPage() {
 
       <section className="container-pro max-w-4xl py-14 md:py-20">
         <div className="relative">
-          <svg className="absolute left-9 top-0 h-full w-2 hidden md:block z-0 pointer-events-none" viewBox="0 0 4 100" preserveAspectRatio="none" aria-hidden>
-            <motion.line
-              x1="2" y1="0" x2="2" y2="100"
-              stroke="var(--pip-green)"
-              strokeWidth="2"
-              strokeDasharray="4 4"
-              initial={{ pathLength: 0 }}
-              whileInView={{ pathLength: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 2 }}
-            />
-          </svg>
-
           <div className="relative z-10 space-y-6">
             {processSteps.map((s, i) => {
               const Icon = s.icon;
@@ -56,6 +43,22 @@ function ProcessingPage() {
                   whileHover={{ x: 6 }}
                   className="relative z-10 flex gap-6 items-start"
                 >
+                  {i < processSteps.length - 1 && (
+                    <motion.div
+                      className="absolute left-9 top-20 hidden w-0.5 -translate-x-1/2 md:block z-0 pointer-events-none"
+                      style={{
+                        height: "calc(100% - 5rem + 1.5rem)",
+                        transformOrigin: "top",
+                        backgroundImage:
+                          "repeating-linear-gradient(to bottom, var(--pip-green) 0, var(--pip-green) 4px, transparent 4px, transparent 8px)",
+                      }}
+                      initial={{ scaleY: 0 }}
+                      whileInView={{ scaleY: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: i * 0.1, ease: "easeInOut" }}
+                      aria-hidden
+                    />
+                  )}
                   <motion.div
                     whileHover={{ scale: 1.08, rotate: 5 }}
                     className="relative z-10 shrink-0 w-20 h-20 rounded-2xl bg-[var(--pip-green)] flex items-center justify-center shadow-lg"

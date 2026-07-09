@@ -37,16 +37,16 @@
   --color-gold: var(--gold);
   --color-earth: var(--earth);
 
-  --font-display: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  --font-script: "Montserrat", ui-sans-serif, system-ui, sans-serif;
-  --font-hero-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-  --font-hero-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Source Sans Pro", ui-sans-serif, system-ui, sans-serif;
+  --font-script: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-hero-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-hero-sans: "Source Sans Pro", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
   --radius: 0.5rem;
-  --site-header-height: 6.25rem;
+  --site-header-height: 4.25rem;
 
   /* Pipagro-inspired palette for GK Agro */
   --pip-green: #1B4332;
@@ -116,7 +116,7 @@
   h1, h2, h3, h4 {
     font-family: var(--font-display);
     letter-spacing: -0.01em;
-    font-weight: 700;
+    font-weight: 600;
   }
 }
 
@@ -290,7 +290,7 @@
 
 @utility pip-nav-link {
   padding: 0.5rem 0.875rem;
-  font-size: 0.9375rem;
+  font-size: 1.0625rem;
   font-weight: 600;
   color: var(--pip-text);
   border-radius: 0.375rem;
@@ -336,11 +336,12 @@
 
 @utility pip-hero-line1 {
   font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 800;
+  font-weight: 700;
   color: white;
   letter-spacing: 0.04em;
   line-height: 0.95;
   text-transform: uppercase;
+  font-family: var(--font-display);
 }
 
 @utility font-hero-serif {
@@ -354,52 +355,54 @@
 /* ── GK Hero — editorial cinematic ── */
 .gk-hero-main {
   position: relative;
-  min-height: calc(100svh - var(--site-header-height));
+  height: calc(100svh - var(--site-header-height));
+  min-height: 0;
   display: flex;
   flex-direction: column;
 }
 
 .gk-hero-content {
   flex: 1;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-block: clamp(1rem, 3svh, 2.25rem);
 }
 
 .gk-hero-inner {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  min-height: 100%;
+  gap: clamp(1rem, 2.25svh, 2rem);
 }
 
 .gk-hero-title {
   font-family: var(--font-hero-serif);
-  font-size: clamp(3.25rem, 8.5vw, 6.25rem);
+  font-size: clamp(3rem, min(8.5vw, 10.5svh), 6.75rem);
   font-weight: 500;
   line-height: 1.04;
   color: white;
   letter-spacing: -0.02em;
-  margin-top: 1.5rem;
+  margin-top: 0;
 }
 
 .gk-hero-desc {
   font-family: var(--font-hero-sans);
-  font-size: 1.1875rem;
-  line-height: 1.65;
+  font-size: clamp(1.0625rem, 2.6svh, 1.375rem);
+  line-height: 1.62;
   color: rgba(255, 255, 255, 0.82);
   font-weight: 400;
-  margin-top: 1.75rem;
+  margin-top: 0;
+  max-width: 42rem;
 }
 
 .gk-hero-actions {
-  margin-top: 1.75rem;
+  margin-top: 0;
 }
 
 .gk-hero-stats {
-  margin-top: 2rem;
+  margin-top: 0;
+  gap: clamp(1.5rem, 4svh, 3.5rem);
 }
 
 .gk-hero-rail-section {
@@ -416,28 +419,6 @@
 }
 
 @media (min-width: 768px) {
-  .gk-hero-content {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-  }
-
-  .gk-hero-title {
-    margin-top: 1.25rem;
-  }
-
-  .gk-hero-desc {
-    margin-top: 2rem;
-    font-size: 1.3125rem;
-  }
-
-  .gk-hero-actions {
-    margin-top: 2rem;
-  }
-
-  .gk-hero-stats {
-    margin-top: 2.5rem;
-  }
-
   .gk-hero-rail-inner {
     padding-top: 2rem;
     padding-bottom: 2rem;
@@ -445,32 +426,44 @@
 }
 
 @media (min-width: 1024px) {
-  .gk-hero-content {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-
   .gk-hero-title {
-    font-size: clamp(3.5rem, 6vw, 6.5rem);
+    font-size: clamp(3.5rem, min(6.5vw, 11svh), 6.75rem);
   }
 
   .gk-hero-desc {
     font-size: 1.375rem;
   }
 
-  .gk-hero-stats {
-    margin-top: 3rem;
+  .gk-hero-inner {
+    gap: clamp(1.25rem, 2.5svh, 2.25rem);
+  }
+}
+
+@media (max-height: 820px) and (min-width: 768px) {
+  .gk-hero-inner {
+    gap: clamp(0.875rem, 2svh, 1.5rem);
+  }
+
+  .gk-hero-title {
+    font-size: clamp(2.875rem, min(7.5vw, 9.5svh), 4.5rem);
+  }
+
+  .gk-hero-desc {
+    font-size: clamp(1rem, 2.4svh, 1.1875rem);
+  }
+
+  .gk-hero-stat-value {
+    font-size: clamp(2rem, min(4.5vw, 5svh), 2.75rem);
   }
 }
 
 @media (max-height: 700px) {
-  .gk-hero-main {
-    min-height: calc(100svh - var(--site-header-height));
+  .gk-hero-content {
+    padding-block: 0.875rem;
   }
 
-  .gk-hero-content {
-    padding-top: 1.25rem;
-    padding-bottom: 1.5rem;
+  .gk-hero-inner {
+    gap: 0.75rem;
   }
 
   .gk-hero-eyebrow {
@@ -484,19 +477,13 @@
   }
 
   .gk-hero-title {
-    font-size: clamp(2.5rem, 6vw, 3.75rem);
-    margin-top: 0.875rem;
+    font-size: clamp(2.5rem, min(6.5vw, 8.5svh), 3.75rem);
     line-height: 1.08;
   }
 
   .gk-hero-desc {
-    font-size: 1.0625rem;
-    line-height: 1.55;
-    margin-top: 1rem;
-  }
-
-  .gk-hero-actions {
-    margin-top: 1.25rem;
+    font-size: clamp(0.9375rem, 2.2svh, 1.0625rem);
+    line-height: 1.5;
   }
 
   .gk-hero-btn-primary,
@@ -507,12 +494,11 @@
   }
 
   .gk-hero-stats {
-    margin-top: 1.5rem;
-    gap: 1.75rem;
+    gap: 1.5rem;
   }
 
   .gk-hero-stat-value {
-    font-size: 2.125rem;
+    font-size: clamp(1.875rem, 4.5svh, 2.25rem);
   }
 
   .gk-hero-stat-label {
@@ -569,9 +555,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1.125rem 2.25rem;
+  padding: clamp(0.9375rem, 1.75svh, 1.125rem) clamp(1.75rem, 3.25svh, 2.25rem);
   font-family: var(--font-hero-sans);
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 2svh, 1.0625rem);
   font-weight: 600;
   letter-spacing: 0.02em;
   color: #0a1610;
@@ -589,9 +575,9 @@
 .gk-hero-btn-secondary {
   display: inline-flex;
   align-items: center;
-  padding: 1.125rem 2rem;
+  padding: clamp(0.9375rem, 1.75svh, 1.125rem) clamp(1.5rem, 2.75svh, 2rem);
   font-family: var(--font-hero-sans);
-  font-size: 1.0625rem;
+  font-size: clamp(0.9375rem, 2svh, 1.0625rem);
   font-weight: 500;
   color: rgba(255, 255, 255, 0.92);
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -605,7 +591,7 @@
 
 .gk-hero-stat-value {
   font-family: var(--font-hero-serif);
-  font-size: clamp(2.25rem, 5vw, 3.25rem);
+  font-size: clamp(2.25rem, min(5.5vw, 5.5svh), 3.5rem);
   font-weight: 500;
   color: white;
   line-height: 1;
@@ -613,12 +599,12 @@
 
 .gk-hero-stat-label {
   font-family: var(--font-hero-sans);
-  font-size: 0.8125rem;
+  font-size: clamp(0.75rem, 1.5svh, 0.8125rem);
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.6);
-  margin-top: 0.625rem;
+  margin-top: clamp(0.375rem, 0.85svh, 0.625rem);
 }
 
 .gk-hero-feature {
@@ -817,13 +803,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.95rem 2.25rem;
+  min-height: 3rem;
+  padding: 0.875rem 2.25rem;
   background: white;
   color: var(--pip-text);
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 0.14em;
+  text-transform: uppercase;
   border-radius: 9999px;
+  border: 1px solid transparent;
   transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
   &:hover {
@@ -837,19 +826,21 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.95rem 2rem;
+  min-height: 3rem;
+  padding: 0.875rem 2.25rem;
   background: transparent;
   color: white;
   font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.55);
   transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
   &:hover {
     transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.7);
-    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -896,7 +887,7 @@
 
 @utility pip-section-title {
   font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 800;
+  font-weight: 600;
   color: var(--pip-text);
   line-height: 1.2;
 }
@@ -1042,6 +1033,53 @@
   text-decoration: underline;
 }
 
+.pip-footer-map {
+  display: block;
+  width: 100%;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: white;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+}
+
+.pip-footer-map-iframe {
+  display: block;
+  width: 100%;
+  height: 11.5rem;
+  border: 0;
+  background: #e8e8e8;
+}
+
+.pip-footer-map-open {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  background: white;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.pip-footer-map-open:hover {
+  background: #f5f5f5;
+  color: var(--pip-green);
+}
+
+@media (max-width: 1023px) {
+  .pip-footer-map {
+    max-width: 320px;
+  }
+
+  .pip-footer-map-iframe {
+    height: 12.5rem;
+  }
+}
+
 @media (max-width: 767px) {
   .pip-footer-bottom-text {
     flex-direction: column;
@@ -1051,5 +1089,71 @@
 
   .pip-footer-bottom-dot {
     display: none;
+  }
+}
+
+.gk-floating-actions {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 45;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.gk-scroll-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  border-radius: 9999px;
+  background: var(--pip-green);
+  color: white;
+  box-shadow: 0 8px 24px rgba(26, 77, 46, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.gk-scroll-top:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(26, 77, 46, 0.45);
+}
+
+.gk-whatsapp-float {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 9999px;
+  background: #25d366;
+  color: white;
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gk-whatsapp-float:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 12px 32px rgba(37, 211, 102, 0.55);
+}
+
+@media (max-width: 767px) {
+  .gk-floating-actions {
+    right: 1rem;
+    bottom: 1rem;
+    gap: 0.625rem;
+  }
+
+  .gk-scroll-top {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .gk-whatsapp-float {
+    width: 3.25rem;
+    height: 3.25rem;
   }
 }
