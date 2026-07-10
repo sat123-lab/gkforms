@@ -51,18 +51,44 @@ export function ContactModal() {
           <form
             onSubmit={(e) => {
               e.preventDefault();
+              const data = new FormData(e.currentTarget);
+              const name = String(data.get("name") ?? "").trim();
+              const email = String(data.get("email") ?? "").trim();
+              const org = String(data.get("org") ?? "").trim();
+              const message = String(data.get("message") ?? "").trim();
+
+              const subject = encodeURIComponent(
+                `GK Agro Farms inquiry${name ? ` from ${name}` : ""}`,
+              );
+              const bodyLines = [
+                name && `Name: ${name}`,
+                email && `Email: ${email}`,
+                org && `Organization: ${org}`,
+                "",
+                "Message:",
+                message,
+              ].filter((line): line is string => typeof line === "string");
+              const body = encodeURIComponent(bodyLines.join("\n"));
+
+              window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
               setSent(true);
             }}
             className="space-y-4"
           >
-            <Field label="Full name" name="name" />
-            <Field label="Email" name="email" type="email" />
+            <Field label="Full name" name="name" required />
+            <Field label="Email" name="email" type="email" required />
             <Field label="Organization" name="org" />
             <div>
-              <label className="text-xs uppercase tracking-widest text-[var(--pip-muted)] font-semibold">
+              <label
+                htmlFor="contact-message"
+                className="text-xs uppercase tracking-widest text-[var(--pip-muted)] font-semibold"
+              >
                 Message
               </label>
               <textarea
+                id="contact-message"
+                name="message"
+                required
                 className="mt-2 w-full rounded-xl bg-white border border-[var(--pip-border)] px-4 py-3 h-28 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--pip-green)]/20 focus:border-[var(--pip-green)] transition resize-none"
                 placeholder="Tell us about your interest — partnership, investment, offtake..."
               />
@@ -132,7 +158,17 @@ export function ContactModal() {
   );
 }
 
-function Field({ label, name, type = "text" }: { label: string; name: string; type?: string }) {
+function Field({
+  label,
+  name,
+  type = "text",
+  required,
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  required?: boolean;
+}) {
   return (
     <div>
       <label
@@ -145,6 +181,7 @@ function Field({ label, name, type = "text" }: { label: string; name: string; ty
         id={`contact-${name}`}
         name={name}
         type={type}
+        required={required}
         className="mt-2 w-full rounded-xl bg-white border border-[var(--pip-border)] px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--pip-green)]/20 focus:border-[var(--pip-green)] transition"
       />
     </div>
