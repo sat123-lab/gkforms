@@ -1051,6 +1051,17 @@
   text-transform: uppercase;
 }
 
+.pip-processing-timeline {
+  transform-origin: top;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--pip-green) 0,
+    var(--pip-green) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;

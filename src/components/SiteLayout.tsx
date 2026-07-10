@@ -10,7 +10,6 @@ import { useContactModal } from "@/contexts/ContactModalContext";
 import { scrollToTop } from "@/lib/scroll";
 import {
   CONTACT_ADDRESS,
-  CONTACT_ADDRESS_SHORT,
   CONTACT_EMAIL,
   CONTACT_MAPS_URL,
   CONTACT_PHONE_DISPLAY,
@@ -149,17 +148,6 @@ function SiteFooter({ onContactClick }: { onContactClick: () => void }) {
             >
               <Logo size="lg" variant="light" />
             </motion.div>
-            <p className="mt-4 text-sm text-white/70 leading-relaxed max-w-md">
-              A concise footer with clean navigation and contact access for GK Agro Farms.
-            </p>
-            <a
-              href={CONTACT_MAPS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-block text-xs text-white/50 hover:text-[var(--pip-yellow)] transition-colors leading-relaxed max-w-md"
-            >
-              {CONTACT_ADDRESS_SHORT}
-            </a>
           </motion.div>
 
           <motion.div

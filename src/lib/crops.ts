@@ -1,7 +1,7 @@
 import ashwagandha from "@/assets/crop-ashwagandha.jpg";
 import tulsi from "@/assets/crop-tulsi.jpg";
 import aloe from "@/assets/crop-aloe.jpg";
-import turmeric from "@/assets/crop/Turmeric & Red Chilli.png";
+import turmeric from "@/assets/crop/ChatGPT Image Jul 10, 2026, 01_35_56 PM.png";
 import sugarcanePaddy from "@/assets/crop/Sugarcane & Paddy.png";
 import subabul from "@/assets/crop/Subabul.png";
 

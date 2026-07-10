@@ -2,7 +2,7 @@ import { heroFarm } from "@/lib/assets";
 import processing from "@/assets/processing.jpg";
 import ashwagandha from "@/assets/crop-ashwagandha.jpg";
 import tulsi from "@/assets/crop-tulsi.jpg";
-import turmeric from "@/assets/crop/Turmeric & Red Chilli.png";
+import turmeric from "@/assets/crop/ChatGPT Image Jul 10, 2026, 01_35_56 PM.png";
 
 export type BlogPost = {
   slug: string;
